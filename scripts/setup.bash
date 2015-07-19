@@ -34,3 +34,6 @@ FILE_CONTEXT=file_contexts_z00a
 
 # Uncomment to add root survival function (fix su binary notification and preserve root after OTA upgrade)
 ROOT_SURVIVAL=1
+
+# Uncomment to slim down
+SLIM_DOWN=1
