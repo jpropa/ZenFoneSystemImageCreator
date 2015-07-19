@@ -40,7 +40,8 @@ build_recovery_from_patch() {
       -e 's/OSIP:\/dev\/block\/by-name\/boot.*OSIP:\/dev\/block\/by-name\/recovery/boot.img recovery.img/' \
       -e 's/ \&\&.*//' build_recovery_pass1 > build_recovery.sh
 
-  . build_recovery.sh > /dev/null
+  chmod 755 build_recovery.sh
+  ./build_recovery.sh > /dev/null
  
   # Clean up
   rm build_recovery_pass*
@@ -54,7 +55,8 @@ link_system_files() {
   grep 'symlink' link_pass1 > link_pass2
   cat link_pass2 | sed -e 's/symlink(\"/symlink /' -e 's/\", \"/ /g' -e 's/\");//' -e 's/\",//' > link.sh
   
-  . link.sh
+  chmod 755 link.sh
+  ./link.sh
 
   rm link_pass*
   rm link.sh
@@ -78,6 +80,9 @@ symlink() {
     popd > /dev/null
   done
 }
+
+# makes the function available to sub-processes
+export -f symlink
 
 source scripts/setup.bash
 
